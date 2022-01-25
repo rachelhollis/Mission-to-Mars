@@ -6,15 +6,15 @@ import scraping
 # set up flask
 app = Flask(__name__)
 
-# use flask_pymongo to set up mongo connection
-app.config['MONGO_URI'] = "mongodb://localhost:27017/mars_app"
-mogno = PyMongo(app)
+# Use flask_pymongo to set up mongo connection
+app.config["MONGO_URI"] = "mongodb://localhost:27017/mars_app"
+mongo = PyMongo(app)
 
 # define the route for the HTML page
-@app.route("/") # this route tells Flask what to display when we are looking at the home page index.html
+@app.route("/")
 def index():
-    mars = mongo.db.mars.find_one()
-    return render_template("index.html", mars=mars)
+   mars = mongo.db.mars.find_one()
+   return render_template("index.html", mars=mars)
 
 # define the route for the 'button' that will scrape updated data when we tell it to
 @app.route("/scrape")
